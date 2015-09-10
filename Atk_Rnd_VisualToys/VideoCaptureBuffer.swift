@@ -230,23 +230,25 @@ class VideoCaptureBuffer : NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         for device in AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) {
             let captureDevice = device as! AVCaptureDevice
             if captureDevice.position == desiredPosition {
-                session!.beginConfiguration()
+              if let session = session {
+                session.beginConfiguration()
                 
                 self.captureDeviceFormat = captureDevice.activeFormat
                 self.captureDevice = captureDevice
                 
                 do {
                     let input = try AVCaptureDeviceInput(device: captureDevice)
-                    for oldInput in session!.inputs {
-                        session!.removeInput(oldInput as! AVCaptureInput)
+                    for oldInput in session.inputs {
+                        session.removeInput(oldInput as! AVCaptureInput)
                     }
-                    session!.addInput(input)
-                    session!.commitConfiguration()
+                    session.addInput(input)
+                    session.commitConfiguration()
                 }
                 catch _ {
                     NSLog("Error: Creating AVCaptureDeviceInput.");
                 }
                 break
+              }
             }
         }
         

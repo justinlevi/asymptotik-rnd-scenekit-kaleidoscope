@@ -314,7 +314,9 @@ class KaleidoscopeViewController: UIViewController, SCNSceneRendererDelegate, SC
     func renderer(aRenderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: NSTimeInterval) {
 
         if _renderCount >= 1 && self.recordingStatus == RecordingStatus.Recording {
+          if self.videoRecorder != nil{
             self.videoRecorder!.bindRenderTextureFramebuffer()
+          }
         }
         
         //self.videoRecorder!.bindRenderTextureFramebuffer()
@@ -328,8 +330,9 @@ class KaleidoscopeViewController: UIViewController, SCNSceneRendererDelegate, SC
             self.createMirror()
             
             if(self.textureSource == .Video) {
-                let scnView:SCNView = self.view as! SCNView
+              if let scnView:SCNView = self.view as? SCNView where scnView.eaglContext != nil {
                 self.videoCapture.initVideoCapture(scnView.eaglContext!)
+              }
             }
             
             glGetIntegerv(GLenum(GL_FRAMEBUFFER_BINDING), &self.defaultFBO)
@@ -348,12 +351,15 @@ class KaleidoscopeViewController: UIViewController, SCNSceneRendererDelegate, SC
 
                 glFlush()
                 glFinish()
+              if self.videoRecorder != nil{
                 self.videoRecorder!.grabFrameFromRenderTexture(time)
                 
+              
                 // Works here
                 glBindFramebuffer(GLenum(GL_FRAMEBUFFER), GLuint(self.defaultFBO))
                 self.screenTexture!.draw(self.videoRecorder!.target, name: self.videoRecorder!.name)
-                
+              }
+              
             } else if self.recordingStatus == RecordingStatus.FinishRequested {
                 self.recordingStatus = RecordingStatus.Finishing
                 Async.background({ () -> Void in
@@ -573,7 +579,7 @@ class KaleidoscopeViewController: UIViewController, SCNSceneRendererDelegate, SC
         
         if(self.videoRecorder == nil) {
             // retrieve the SCNView
-            let scnView = self.view as! SCNView
+          if let scnView = self.view as? SCNView where scnView.eaglContext != nil {
             
             let width:GLsizei = GLsizei(scnView.bounds.size.width * UIScreen.mainScreen().scale)
             let height:GLsizei = GLsizei(scnView.bounds.size.height * UIScreen.mainScreen().scale)
@@ -584,6 +590,7 @@ class KaleidoscopeViewController: UIViewController, SCNSceneRendererDelegate, SC
             
             self.videoRecorder!.initVideoRecorder(scnView.eaglContext!)
             self.videoRecorder!.generateFramebuffer(scnView.eaglContext!)
+          }
         }
     }
     
