@@ -38,7 +38,6 @@
 		1DC1D91A19DA8A8B00C86F3A /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC1D91919DA8A8B00C86F3A /* GLProgram.m */; };
 		1DF7200919D0C284002EDF59 /* FrameBufferVideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF7200819D0C284002EDF59 /* FrameBufferVideoRecorder.swift */; };
 		1DFE59EE19900D6900B8B3D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE59ED19900D6900B8B3D3 /* AppDelegate.swift */; };
-		1DFE59F019900D6900B8B3D3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DFE59EF19900D6900B8B3D3 /* art.scnassets */; };
 		1DFE59F219900D6900B8B3D3 /* KaleidoscopeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE59F119900D6900B8B3D3 /* KaleidoscopeViewController.swift */; };
 		1DFE59F519900D6900B8B3D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFE59F319900D6900B8B3D3 /* Main.storyboard */; };
 		1DFE59F719900D6900B8B3D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DFE59F619900D6900B8B3D3 /* Images.xcassets */; };
@@ -298,7 +297,6 @@
 				1D0D8A9619DA550700C49211 /* PassthroughShader.vsh in Resources */,
 				1D0D8A9219DA54E200C49211 /* PassthroughShader.fsh in Resources */,
 				1DFE59F719900D6900B8B3D3 /* Images.xcassets in Resources */,
-				1DFE59F019900D6900B8B3D3 /* art.scnassets in Resources */,
 				1DFE59F519900D6900B8B3D3 /* Main.storyboard in Resources */,
 				1D62050619928E8E005DDBC9 /* Shader.vsh in Resources */,
 			);

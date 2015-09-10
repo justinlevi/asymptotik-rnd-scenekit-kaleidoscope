@@ -118,7 +118,7 @@ class KaleidoscopeViewController: UIViewController, SCNSceneRendererDelegate, SC
             }
         }
 
-        self.videoRecordingTmpUrl = NSURL(fileURLWithPath: (NSTemporaryDirectory().stringByAppendingPathComponent("video.mov")));
+        self.videoRecordingTmpUrl = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("video.mov")
         self.screenTexture = ScreenTextureQuad()
         self.screenTexture!.initialize()
         
